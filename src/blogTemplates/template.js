@@ -21,10 +21,11 @@ export default function Template({
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: {slug: { eq: $slug }}) {
+  query {
+    markdownRemark {
       html
       frontmatter {
+        date(formatString: "MMMM DD, YYYY")
         title
       }
     }

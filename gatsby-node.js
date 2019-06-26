@@ -1,5 +1,3 @@
-// This file is NECESSARY for markdownRemark and others to appear
-
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
@@ -12,13 +10,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
-    console.log(createFilePath({ node, getNode, basePath: `pages` })) // This function will find the parent Node AND create a slug
   }
 }
 
 exports.createPages = ({ graphql, actions }) => {
-  // **Note:** The graphql function call returns a Promise
-  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
   const { createPage } = actions
   return graphql(`
     {
@@ -36,12 +31,12 @@ exports.createPages = ({ graphql, actions }) => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
-        component: path.resolve(`./src/blogTemplates/template.js`), // This is where the markdown files will go
+        component: path.resolve(`./src/blogTemplates/template.js`),
         context: {
           // Data passed to context is available
-          // in page queries as GraphQl variables
+          // in page queries as GraphQL variables.
           slug: node.fields.slug,
-        }
+        },
       })
     })
   })
