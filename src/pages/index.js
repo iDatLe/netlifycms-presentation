@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-const IndexPage = ({ data }) => {
+export default function IndexPage({data}) {
   console.log(data)
   return (
     <div className="container">
@@ -9,16 +9,13 @@ const IndexPage = ({ data }) => {
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <div key={node.id}>
           <Link to={node.fields.slug}>
-            <h3>{node.frontmatter.tittle} </h3>
-            <p>{node.excerpt}</p>
+            <h3>{node.frontmatter.title}</h3>
           </Link>
         </div>
       ))}
     </div>
   )
 }
-
-export default IndexPage
 
 export const query = graphql`
   query {
