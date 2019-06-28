@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import '../style/index.scss';
 
 export default function IndexPage({data}) {
   console.log(data)
